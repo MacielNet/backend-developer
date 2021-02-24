@@ -15,7 +15,7 @@ public class PostService {
 	@Autowired
 	private PostRepository repo;
 	
-	public Post buscar(Integer id) {
+	public Post find(Integer id) {
 		Optional<Post> obj = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -24,6 +24,11 @@ public class PostService {
 	
 	public Post insert(Post obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Post update(Post obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 
