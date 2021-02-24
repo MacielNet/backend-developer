@@ -14,13 +14,17 @@ import net.superbid.backenddeveloper.domain.Post;
 @RequestMapping(value="/posts")
 public class PostResource {
 	
+	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Post> listar() {
 		
-		Post p1 = new Post(null, "Post#001 - Primeiro Post", "Olá, este é o primeiro post da API.", 
-						   new Timestamp(System.currentTimeMillis()),null); 
-		Post p2 = new Post(null, "Post#002 - Segundo Post", "Então, aqui temos outro post!", 
-						   new Timestamp(System.currentTimeMillis()),null);
+		Post p1 = new Post(null, 
+						   "Post#001 - Primeiro Post", "Olá, este é o primeiro post da API.", 
+						   timestamp, null); 
+		Post p2 = new Post(null, 
+						   "Post#002 - Segundo Post", "Então, aqui temos outro post!", 
+						   timestamp, null);
 		
 		List<Post> lista = new ArrayList<>();
 		lista.add(p1);
@@ -28,5 +32,4 @@ public class PostResource {
 		
 		return lista;
 	}
-	
 }
