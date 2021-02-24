@@ -2,8 +2,9 @@ package net.superbid.backenddeveloper.resources;
 
 import java.net.URI;
 import java.sql.Timestamp;
+import java.util.List;
 
-import javax.servlet.Servlet;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import net.superbid.backenddeveloper.domain.Post;
+import net.superbid.backenddeveloper.dto.PostDTO;
 import net.superbid.backenddeveloper.services.PostService;
 
 @RestController
@@ -33,7 +35,8 @@ public class PostResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Post obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody PostDTO objDto){
+		Post obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -51,5 +54,11 @@ public class PostResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> findAll() {
+		List<Post> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 }
