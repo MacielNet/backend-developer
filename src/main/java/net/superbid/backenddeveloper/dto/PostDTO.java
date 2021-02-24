@@ -13,11 +13,11 @@ public class PostDTO implements Serializable {
 	private Integer id;
 	
 	@NotEmpty(message="Preenchimento obrigatório!")
-	@Length(min=5, max=80, message="O Tamanho é inválido!")
+	@Length(min=5, max=80, message="O campo deve possuir entre 5 e 80 caracteres!")
 	private String titulo;
 
 	@NotEmpty(message="Preenchimento obrigatório!")
-	@Length(min=15, max=255, message="O Tamanho é inválido!")
+	@Length(min=15, max=180, message="O campo deve possuir entre 15 e 180 caracteres!")
 	private String descricao;
 	
 	private Timestamp created_at;

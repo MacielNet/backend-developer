@@ -35,7 +35,6 @@ public class PostService {
 		Post oldObj = find(newObj.getId());
 		oldObj.setTitulo((newObj.getTitulo() == null) ? oldObj.getTitulo() : newObj.getTitulo());
 		oldObj.setDescricao((newObj.getDescricao() == null) ? oldObj.getDescricao() : newObj.getDescricao());
-		//oldObj.setCreated_at(oldObj.getCreated_at());
 		oldObj.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 		return repo.save(oldObj);
 	}
