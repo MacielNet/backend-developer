@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.superbid.backenddeveloper.domain.Post;
 import net.superbid.backenddeveloper.repositories.PostRepository;
+import net.superbid.backenddeveloper.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PostService {
@@ -16,7 +17,9 @@ public class PostService {
 	
 	public Post buscar(Integer id) {
 		Optional<Post> obj = repo.findById(id);
-		return obj.orElse(null);
+		
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Post.class.getName()));
 	}
 
 }
