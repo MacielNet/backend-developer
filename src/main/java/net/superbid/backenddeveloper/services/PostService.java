@@ -21,5 +21,10 @@ public class PostService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Post.class.getName()));
 	}
+	
+	public Post insert(Post obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 
 }
