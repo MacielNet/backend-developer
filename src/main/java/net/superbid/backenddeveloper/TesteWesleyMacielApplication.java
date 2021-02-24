@@ -2,6 +2,8 @@ package net.superbid.backenddeveloper;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,9 +27,9 @@ public class TesteWesleyMacielApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Post p1 = new Post(null, "Post#001 - Primeiro Post", "Olá, este é o primeiro post da API.", 
-				   		   new Timestamp(System.currentTimeMillis()),null); 
+						   new Timestamp(System.currentTimeMillis()),null); 
 		Post p2 = new Post(null, "Post#002 - Segundo Post", "Então, aqui temos outro post!", 
-			   			   new Timestamp(System.currentTimeMillis()),null);
+						   new Timestamp(System.currentTimeMillis()),null);
 		postRepository.saveAll(Arrays.asList(p1,p2));
 		
 	}
