@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import net.superbid.backenddeveloper.domain.Post;
 import net.superbid.backenddeveloper.dto.PostDTO;
+import net.superbid.backenddeveloper.dto.PostDTOupd;
 import net.superbid.backenddeveloper.services.PostService;
 
 @RestController
@@ -35,8 +36,8 @@ public class PostResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody PostDTO objDto){
-		Post obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody PostDTO objeto){
+		Post obj = service.fromDTO(objeto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -44,8 +45,9 @@ public class PostResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Post obj, @PathVariable Integer id) {
-		obj.setId(id);
+	public ResponseEntity<Void> update(@Valid @RequestBody PostDTOupd objeto, @PathVariable Integer id) {
+		objeto.setId(id);
+		Post obj = service.fromDTOupd(objeto);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
