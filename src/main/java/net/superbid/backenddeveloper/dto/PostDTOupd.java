@@ -4,23 +4,18 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import io.swagger.annotations.ApiModelProperty;
 
-@SuppressWarnings("deprecation")
-public class PostDTO implements Serializable {
+public class PostDTOupd implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(position = 1, hidden = true, required = false)
 	private Integer id;
 	
-	@NotEmpty(message="Preenchimento obrigatório!")
 	@Length(min=5, max=80, message="O campo deve possuir entre 5 e 80 caracteres!")
 	@ApiModelProperty(position = 2, hidden = false, required = true)
 	private String titulo;
 
-	@NotEmpty(message="Preenchimento obrigatório!")
 	@Length(min=15, max=180, message="O campo deve possuir entre 15 e 180 caracteres!")
 	@ApiModelProperty(position = 3, hidden = false, required = true)
 	private String descricao;
@@ -30,10 +25,10 @@ public class PostDTO implements Serializable {
 	@ApiModelProperty(position = 5, hidden = true, required = false)
 	private Timestamp updated_at;
 	
-	public PostDTO() {
+	public PostDTOupd() {
 	}
 
-	public PostDTO(Integer id, String titulo, String descricao, Timestamp created_at, Timestamp updated_at) {
+	public PostDTOupd(Integer id, String titulo, String descricao, Timestamp created_at, Timestamp updated_at) {
 		super();
 		this.id = id;
 		this.titulo = titulo;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import net.superbid.backenddeveloper.domain.Post;
 import net.superbid.backenddeveloper.dto.PostDTO;
+import net.superbid.backenddeveloper.dto.PostDTOupd;
 import net.superbid.backenddeveloper.repositories.PostRepository;
 import net.superbid.backenddeveloper.services.exceptions.ObjectNotFoundException;
 
@@ -49,6 +50,10 @@ public class PostService {
 	}
 	
 	public Post fromDTO(PostDTO objDto) {
+		return new Post(objDto.getId(),objDto.getTitulo(),objDto.getDescricao(),objDto.getCreated_at(),objDto.getUpdated_at());
+	}
+	
+	public Post fromDTOupd(PostDTOupd objDto) {
 		return new Post(objDto.getId(),objDto.getTitulo(),objDto.getDescricao(),objDto.getCreated_at(),objDto.getUpdated_at());
 	}
 }

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Post implements Serializable {
 	/**
@@ -18,10 +20,15 @@ public class Post implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true, required = false)
 	private Integer id;
+	@ApiModelProperty(position = 3, hidden = false, required = true)
 	private String titulo;
+	@ApiModelProperty(position = 3, hidden = false, required = true)
 	private String descricao;
+	@ApiModelProperty(hidden = true, required = false)
 	private Timestamp created_at;
+	@ApiModelProperty(hidden = true, required = false)
 	private Timestamp updated_at;
 	
 	public Post() {
@@ -99,8 +106,5 @@ public class Post implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-
-	
+	}	
 }

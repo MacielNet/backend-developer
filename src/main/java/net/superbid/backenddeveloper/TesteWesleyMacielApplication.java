@@ -2,8 +2,6 @@ package net.superbid.backenddeveloper;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
